@@ -30,7 +30,7 @@ public class PowerUser implements UserDetails {
     @NotEmpty
     private String address;
 
-    @Min(value = 18, message = "Age should be less than 18")
+    @Min(value = 18, message = "Age should not be less than 18")
     @Max(value = 65, message = "Age should not be more than 65")
     private int age;
 
@@ -40,13 +40,30 @@ public class PowerUser implements UserDetails {
     public PowerUser(){
     }
 
-    public PowerUser(int id, String fullName, String email, String address, int age) {
-        this.id = id;
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public PowerUser(String fullName, String username, String password, String address, int age, Role role) {
         this.fullName = fullName;
-        this.username = email;
+        this.username = username;
+        this.password = password;
         this.address = address;
         this.age = age;
+        this.role = role;
     }
+
+//    public PowerUser(int id, String fullName, String email, String address, int age) {
+//        this.id = id;
+//        this.fullName = fullName;
+//        this.username = email;
+//        this.address = address;
+//        this.age = age;
+//    }
 
     public void setUsername(String username) {
         this.username = username;

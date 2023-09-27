@@ -41,7 +41,7 @@ public class PowerUserController {
         return userService.addUser(powerUser);
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String powerUserLogin(@RequestBody LoginRequest request){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.getUsername(), request.getUsername()));

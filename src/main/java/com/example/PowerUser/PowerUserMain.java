@@ -13,11 +13,11 @@ public class PowerUserMain {
 
 //        restTemplate.delete(url, new PowerUser());
 
-        PowerUser user = new PowerUser(12, "Jamila same", "jamila@mame.com", "Kaduna, Nigeria",31 );
+//        PowerUser user = new PowerUser(12, "Jamila same", "jamila@mame.com", "Kaduna, Nigeria",31 );
 
-        restTemplate.put(url, user, new PowerUser());
-
-        PowerUser returnedUser = restTemplate.postForObject("http://localhost:8080//power/users/v1/user", user, PowerUser.class, new PowerUser());
+//        restTemplate.put(url, user, new PowerUser());
+//
+//        PowerUser returnedUser = restTemplate.postForObject("http://localhost:8080//power/users/v1/user", user, PowerUser.class, new PowerUser());
 
 //        ResponseEntity<PowerUser> returnedUser = restTemplate.postForEntity("http://localhost:8080//power/users/v1/user", user, PowerUser.class);
 //        PowerUser extractedUser = returnedUser.getBody();

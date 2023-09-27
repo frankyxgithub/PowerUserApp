@@ -2,7 +2,9 @@ package com.example.PowerUser.Control;
 
 import com.example.PowerUser.Exception.UserException;
 import com.example.PowerUser.Model.PowerUser;
+import com.example.PowerUser.Model.Role;
 import com.example.PowerUser.Repository.PowerUserRepository;
+import com.example.PowerUser.Service.MailMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -19,6 +21,9 @@ public class PowerUserService {
     @Autowired
     private PowerUserRepository userRepository;
 
+    @Autowired
+    private MailMessageService mailMessageService;
+
 
     @Cacheable("allPowerUsers")
     public List<PowerUser> getAllPowerUsers(){
@@ -27,7 +32,10 @@ public class PowerUserService {
 
     @CacheEvict(value = "allPowerUsers", allEntries = true)
     public ResponseEntity<PowerUser> addUser(@RequestBody PowerUser powerUser){
+        powerUser.setRole(Role.USER);
+
         userRepository.save(powerUser);
+        mailMessageService.sendMail(powerUser.getUsername(), "Successfully registered", "Welcome\n User with %s username is good to have you here");
         return (ResponseEntity.ok(powerUser));
     }
     @Cacheable(value = "getUserById", key = "#id")
